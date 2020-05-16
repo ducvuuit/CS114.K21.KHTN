@@ -11,8 +11,8 @@ from imutils import paths
 # grab the list of images that we’ll be describing
 print("[INFO] loading images...")
 imagePaths = list(paths.list_images('Dataset'))
-print(imagePaths)
-"""
+#print(imagePaths)
+
 # initialize the image preprocessor, load the dataset from disk,
 # and reshape the data matrix
 sp = SimplePreprocessor(32, 32)
@@ -40,4 +40,4 @@ model = KNeighborsClassifier(n_neighbors=1,
 model.fit(trainX, trainY)
 print(classification_report(testY, model.predict(testX),
     target_names=le.classes_))
-"""
+

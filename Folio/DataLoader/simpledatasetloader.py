@@ -36,7 +36,7 @@ class SimpleDatasetLoader:
             # treat our processed image as a "feature vector" by
             # updating the data list followed by the label
             data.append(image)
-            label.append(label)
+            labels.append(label)
             # show an update every ‘verbose‘ images
             if verbose > 0 and i > 0 and (i + 1) % verbose == 0:
                 print("[INFO] processed {}/{}".format(i + 1, len(imagePaths)))
