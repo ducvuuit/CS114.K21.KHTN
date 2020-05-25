@@ -34,10 +34,11 @@ labels = le.fit_transform(labels)
     test_size=0.25, random_state=42)
 
 # train and evaluate a k-NN classifier on the raw pixel intensities
-print("[INFO] evaluating k-NN classifier...")
-model = KNeighborsClassifier(n_neighbors=1,
-    n_jobs=-1)
-model.fit(trainX, trainY)
+print("[INFO] evaluating k-NN classifier..."
+model = linear() 
+#model = KNeighborsClassifier(n_neighbors=1,
+    #n_jobs=-1)
+#model.fit(trainX, trainY)
 print(classification_report(testY, model.predict(testX),
     target_names=le.classes_))
 
