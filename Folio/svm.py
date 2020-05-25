@@ -40,6 +40,6 @@ print("[INFO] evaluating svm classifier...")
 model = svm.SVC(kernel='rbf', C=1, gamma=0.5)
 #model = KNeighborsClassifier(n_neighbors=1,
     #n_jobs=-1)
-#model.fit(trainX, trainY)
+model.fit(trainX, trainY)
 print(classification_report(testY, model.predict(testX),
     target_names=le.classes_))
