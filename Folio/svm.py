@@ -8,7 +8,7 @@ from sklearn.metrics import classification_report
 from DataLoader.simpledatasetloader import SimpleDatasetLoader
 from preprocessing.simplepreprocessor import SimplePreprocessor
 from imutils import paths
-
+from sklearn.svm import SVC
 
 # grab the list of images that we’ll be describing
 print("[INFO] loading images...")
@@ -37,9 +37,8 @@ labels = le.fit_transform(labels)
 
 # train and evaluate a svm classifier on the raw pixel intensities
 print("[INFO] evaluating svm classifier...")
-model = svm.SVC(kernel='rbf', C=1, gamma=0.5)
-#model = KNeighborsClassifier(n_neighbors=1,
-    #n_jobs=-1)
+#model = svm.SVC(kernel='rbf', C=1, gamma=0.5)
+model = SVC(gamma='auto')
 model.fit(trainX, trainY)
 print(classification_report(testY, model.predict(testX),
     target_names=le.classes_))
