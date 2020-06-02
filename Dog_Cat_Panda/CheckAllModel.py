@@ -52,3 +52,23 @@ model = SVC(gamma='auto')
 model.fit(trainX, trainY)
 print(classification_report(testY, model.predict(testX),
     target_names=le.classes_))
+
+print("[INFO] evaluating LR classifier...")
+model = LogisticRegression(solver='liblinear', multi_class='ovr')
+model.fit(trainX, trainY)
+print(classification_report(testY, model.predict(testX), target_names=le.classes))
+
+print("[INFO] evaluating LDA classifier...")
+model = LinearDiscriminantAnalysis()
+model.fit(trainX, trainY)
+print(classification_report(testY, model.predict(testX), target_names=le.classes))
+
+print("[INFO] evaluating CART classifier...")
+model = DecisionTreeClassifier()
+model.fit(trainX, trainY)
+print(classification_report(testY, model.predict(testX), target_names=le.classes))
+
+print("[INFO] evaluating NB classifier...")
+model = GaussianNB()
+model.fit(trainX, trainY)
+print(classification_report(testY, model.predict(testX), target_names=le.classes))
