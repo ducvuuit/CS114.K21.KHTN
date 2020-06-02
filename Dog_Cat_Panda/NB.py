@@ -44,31 +44,13 @@ labels = le.fit_transform(labels)
     test_size=0.25, random_state=42)
 
 # train and evaluate a svm classifier on the raw pixel intensities
-print("[INFO] evaluating svm classifier...")
+print("[INFO] evaluating NB classifier...")
 
 #model = svm.SVC(kernel='rbf', C=1, gamma=0.5)
-model = SVC(gamma='auto')
+model = GaussianNB()
 
 model.fit(trainX, trainY)
 print(classification_report(testY, model.predict(testX),
     target_names=le.classes_))
 
-print("[INFO] evaluating LR classifier...")
-model = LogisticRegression(solver='liblinear', multi_class='ovr')
-model.fit(trainX, trainY)
-print(classification_report(testY, model.predict(testX), target_names=le.classes_))
 
-print("[INFO] evaluating LDA classifier...")
-model = LinearDiscriminantAnalysis()
-model.fit(trainX, trainY)
-print(classification_report(testY, model.predict(testX), target_names=le.classes_))
-
-print("[INFO] evaluating CART classifier...")
-model = DecisionTreeClassifier()
-model.fit(trainX, trainY)
-print(classification_report(testY, model.predict(testX), target_names=le.classes_))
-
-print("[INFO] evaluating NB classifier...")
-model = GaussianNB()
-model.fit(trainX, trainY)
-print(classification_report(testY, model.predict(testX), target_names=le.classes_))
