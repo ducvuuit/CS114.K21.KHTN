@@ -8,6 +8,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import LinearSVC
+from sklearn.naive_bayes import GaussianNB
 
 # tai len data
 import pandas as pd
@@ -27,8 +28,8 @@ trainX = cv.fit_transform(trainX.values).toarray()
 trainVocab = cv.vocabulary_
 cv = CountVectorizer(vocabulary=trainVocab)
 testX = cv.fit_transform(testX.values).toarray()
-'''
-for i in range(3):
+
+for i in range(4):
 
     if i == 0:
         model = LogisticRegression()
@@ -39,16 +40,14 @@ for i in range(3):
     if i == 2:
         model = LinearSVC()
         print("   [INFO] evaluating SVM...")
-
+    if i == 3:
+        model = GaussianNB()
+        print("   [INFO] evaluating GaussianNB...")
+    
     # train and evaluating
     model.fit(trainX, trainY)
     predictions = model.predict(testX)
     print(classification_report(testY, predictions))
     print("\n---------------------------------------\n")
-'''
-from sklearn.naive_bayes import GaussianNB
-model = GaussianNB()
-print("   [INFO] evaluating GaussianNB...")
-model.fit(trainX, trainY)
-predictions = model.predict(testX)
-print(classification_report(testY, predictions))
+
+    
