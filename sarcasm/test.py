@@ -1,53 +1,61 @@
-# Theem cacs thuw vien can thiet
-from sklearn.metrics import classification_report
-from sklearn.model_selection import train_test_split
+ #NLP
 
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfVectorizer
-
-from sklearn.linear_model import LogisticRegression
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.svm import LinearSVC
-from sklearn.naive_bayes import GaussianNB
-
-# tai len data
+# Importing libraries
+import numpy as py
+import matplotlib.pyplot as plt
 import pandas as pd
 
-data = pd.read_json("Dataset/Sarcasm_Headlines_Dataset_v2.json",lines=True)
-X = data['headline']
-Y = data['is_sarcastic']
-# split test:25%, train:75%
-trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.25, random_state=42)
+# Importing the dataset
+dataset =  pd.read_json('Dataset/Sarcasm_Headlines_Dataset.json', lines = True)
 
-print("[INFO] Used CounterVectorizer ... ")
-# su dung phuong phap vector hoa van ban
-cv = CountVectorizer()
+# Cleaning the text
+import re
+import nltk
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
+corpus = []
+for i in range(0, 26709):  # 26709 is the numbers of headlines in the dataset
+    review = re.sub('!', ' exclamation', dataset['headline'][i]) # replace '!' with the word 'exclamation' to use it as a dimension
+    review = review.replace('?', ' inquiry') # re.sub didn't work with '?'
+    matches = re.findall(r'\'(.+?)\'', review) # detects quoted text from string
+    if matches: # if the string contains a quotation
+        review += ' quotation' # add word 'quotation' to use it as a dimension
+    review = re.sub('[^a-z]', ' ', review) # removes all symbols besides lowercase letters (everything is lowercase to begin with)
+    review = review.split() # split the string into a list of single words for PorterStemmer
+    ps = PorterStemmer()
+    review = [ps.stem(word) for word in review if not word in stopwords.words('english')] # transform words to their stems and remove stopwords
+    review = ' '.join(review) # join the list back to a string
+    corpus.append(review) # add it to the corpus
 
-# chuyen doi tu thanh vecor
-trainX = cv.fit_transform(trainX.values).toarray()
-trainVocab = cv.vocabulary_
-cv = CountVectorizer(vocabulary=trainVocab)
-testX = cv.fit_transform(testX.values).toarray()
-
-for i in range(4):
-
-    if i == 0:
-        model = LogisticRegression()
-        print("   [INFO] evaluating Logistic Regression...")
-    if i == 1:
-        model = MultinomialNB()
-        print("   [INFO] evaluating Naive Bayes...")
-    if i == 2:
-        model = LinearSVC()
-        print("   [INFO] evaluating SVM...")
-    if i == 3:
-        model = GaussianNB()
-        print("   [INFO] evaluating GaussianNB...")
+# Creating the bag of words model
+y = dataset.iloc[:, 2] # extracting the dependant outcomes
+from sklearn.feature_extraction.text import CountVectorizer
+features_n = range(100, 3000, 100) # list of different max vectors to try
+scores = []
+for i in features_n:
+    cv = CountVectorizer(max_features = i) # setting the max number different features
+    X = cv.fit_transform(corpus).toarray() # transforming list of strings into a matrix of token counts
     
-    # train and evaluating
-    model.fit(trainX, trainY)
-    predictions = model.predict(testX)
-    print(classification_report(testY, predictions))
-    print("\n---------------------------------------\n")
+    # Splitting the dataset into the Training set and Test set
+    from sklearn.model_selection import train_test_split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, random_state = 0)
 
+    # Fitting Naive Bayes to the Training set
+    from sklearn.naive_bayes import GaussianNB
+    classifier = GaussianNB()
+    classifier.fit(X_train, y_train)
+
+    # Predicting the Test set results
+    y_pred = classifier.predict(X_test)
+
+    # Making the Confusion Matrix
+    from sklearn.metrics import confusion_matrix
+    cm = confusion_matrix(y_test, y_pred)
+    TP = cm[0][0]
+    FP = cm[0][1]
+    FN = cm[1][0]
+    TN = cm[1][1]
+    error_rate = (FP+FN)/(TP+TN+FP+FN) # calculating the error rate based on confusion matrix results
+    scores.append(error_rate)
     
