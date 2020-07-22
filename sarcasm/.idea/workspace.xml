@@ -20,8 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fda512b4-553a-4bf4-b94f-634314d3fc75" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sarcasm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sarcasm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectML/dataset/data-label - 1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectML/dataset/data-label - 1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectML/dataset/data-label - 2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectML/dataset/data-label - 3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectML/dataset/data-original.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectML/dataset/data-original.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectML/dataset/exceltocsv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectML/dataset/stopword.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../FinalProjectML/dataset/stopword.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FinalProjectML/dataset/your_csv_file.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,6 +123,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="95" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1593582068372" />
+    <state x="420" y="82" key="FileChooserDialogImpl" timestamp="1595321481787">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="420" y="82" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1595321481787" />
     <state width="1237" height="204" key="GridCell.Tab.0.bottom" timestamp="1591408972289">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -154,9 +163,9 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1591408225585" />
-    <state x="303" y="1" key="search.everywhere.popup" timestamp="1591407627736">
+    <state x="303" y="1" key="search.everywhere.popup" timestamp="1595321404869">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="303" y="1" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1591407627736" />
+    <state x="303" y="1" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1595321404869" />
   </component>
 </project>
