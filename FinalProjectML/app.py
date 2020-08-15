@@ -11,9 +11,10 @@ class NLP(object):
 
     def segmentation(self):
         return ViTokenizer.tokenize(self.text)
-'''
+
 # upload stopword
-sw =  open('stopword.txt')
+'''
+sw =  open('dataset/stopword.txt')
 data_sw = sw.readlines()
 data_sw = [x.strip() for x in data_sw]
 '''
