@@ -70,5 +70,6 @@ for cmt in cmts:
 
 f.close()
 
-print(f"{len(cmts)} comments")
+n = len(cmts)
+print(n,"comments")
 browser.close()
